@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Laboratório de Inovação Optrônica para Oftalmologia e Agricultura">
+    <meta name="keywords" content="liooa, lio2a, ifsc, usp, ótica, óptica, oftalmologia, agricultura, optrônica, laboratório, laser">
+
+    <title>LIOOA - Fator de forma</title>
+
+    <link rel="stylesheet" href="/styles/main.min.css">
+    <link rel="icon" href="/images/logo/symbol.svg" type="image/svg+xml">
+
+    <meta property="og:title" content="LIOOA - Fator de forma">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lio2a.giroto.dev">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="IFSC">
+    <meta property="og:description" content="Laboratório de Inovação Optrônica para Oftalmologia e Agricultura">
+
+    <meta property="og:image" content="https://lio2a.giroto.dev/images/logo/symbol-64.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="64">
+    <meta property="og:image:height" content="64">
+
+    <meta property="og:image" content="https://lio2a.giroto.dev/images/logo/symbol-128.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="128">
+    <meta property="og:image:height" content="128">
+
+    <meta property="og:image" content="https://lio2a.giroto.dev/images/logo/symbol-256.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="256">
+    <meta property="og:image:height" content="256">
+</head>
+<body>
+    <header id="header">
+    <div class="container">
+        <input type="checkbox" id="expand-menu" autocomplete="off">
+
+        <a href="/" aria-label="Início">
+            <div class="logo">
+                <div class="symbol">
+                    <img src="/images/logo/symbol-connected.svg" alt="" class="fixed">
+                    <img src="/images/logo/symbol.svg" alt="" class="non-fixed">
+                </div>
+                <img src="/images/logo/text.svg" alt="LIO2A" class="text">
+            </div>
+        </a>
+
+        <label for="expand-menu" role="menu" aria-label="Alternar menu de navegação" class="expand"></label>
+
+        <nav>
+            <ul>
+                                        <li><a href="/">Início</a></li>                                        <li><a href="/pessoas.html">Pessoas</a></li>                                        <li><a href="/publicacoes.html">Publicações</a></li>                                        <li><a href="/ferramentas.html" class="active">Ferramentas</a></li>                            </ul>
+        </nav>
+    </div>
+    <hr>
+</header>
+
+    <main class="tool lens container">
+        <h1 class="header-title">Fator de Forma de Coddington</h1>
+
+        <div class="body">
+            <section class="equations">
+                <div class="lens">
+                    <svg viewBox="-1.5 -1.75 3 3.5">
+                        <path id="path-singlet" d="m -0.5 -1.5 a 5 5 180 0 0 0 3 h 1 a 5 5 180 0 0 0 -3 z" stroke="currentColor" stroke-width="1%" fill="transparent" />
+                    </svg>
+                    <div class="mediums">
+                        <math>
+                            <msub>
+                                <mi>n</mi>
+                                <mi>O</mi>
+                            </msub>
+                        </math>
+                        <math>
+                            <msub>
+                                <mi>n</mi>
+                                <mi>L</mi>
+                            </msub>
+                        </math>
+                        <math>
+                            <msub>
+                                <mi>n</mi>
+                                <mi>I</mi>
+                            </msub>
+                        </math>
+                    </div>
+                </div>
+                <div class="separator"></div>
+                <math display="block">
+                    <mrow>
+                        <mfrac>
+                            <mn>1</mn>
+                            <mi>f</mi>
+                        </mfrac>
+                        <mo>=</mo>
+                        <mfrac>
+                            <mn>1</mn>
+                            <mi>o</mi>
+                        </mfrac>
+                        <mo>+</mo>
+                        <mfrac>
+                            <mn>1</mn>
+                            <mi>i</mi>
+                        </mfrac>
+                    </mrow>
+                </math>
+                <math display="block">
+                    <mrow>
+                        <mi>p</mi>
+                        <mo>=</mo>
+                        <mfrac>
+                            <mrow>
+                                <mi>i</mi>
+                                <mo>+</mo>
+                                <mi>o</mi>
+                            </mrow>
+                            <mrow>
+                                <mi>i</mi>
+                                <mo>−</mo>
+                                <mi>o</mi>
+                            </mrow>
+                        </mfrac>
+                    </mrow>
+                </math>
+                <math display="block">
+                    <mrow>
+                        <mi>q</mi>
+                        <mo>=</mo>
+                        <mo>−</mo>
+                        <mn>2</mn>
+                        <mi>p</mi>
+                        <mfrac>
+                            <mrow>
+                                <msup>
+                                    <mi>n</mi>
+                                    <mn>2</mn>
+                                </msup>
+                                <mo>−</mo>
+                                <mn>1</mn>
+                            </mrow>
+                            <mrow>
+                                <mi>n</mi>
+                                <mo>+</mo>
+                                <mn>2</mn>
+                            </mrow>
+                        </mfrac>
+                        <mo>=</mo>
+                        <mfrac>
+                            <mrow>
+                                <msub>
+                                    <mi>r</mi>
+                                    <mn>2</mn>
+                                </msub>
+                                <mo>+</mo>
+                                <msub>
+                                    <mi>r</mi>
+                                    <mn>1</mn>
+                                </msub>
+                            </mrow>
+                            <mrow>
+                                <msub>
+                                    <mi>r</mi>
+                                    <mn>2</mn>
+                                </msub>
+                                <mo>−</mo>
+                                <msub>
+                                    <mi>r</mi>
+                                    <mn>1</mn>
+                                </msub>
+                            </mrow>
+                        </mfrac>
+                    </mrow>
+                </math>
+                <math display="block">
+                    <mrow>
+                        <msub>
+                            <mi>r</mi>
+                            <mn>1</mn>
+                        </msub>
+                        <mo>=</mo>
+                        <mn>2</mn>
+                        <mi>f</mi>
+                        <mfrac>
+                            <mrow>
+                                <mi>n</mi>
+                                <mo>−</mo>
+                                <mn>1</mn>
+                            </mrow>
+                            <mrow>
+                                <mi>q</mi>
+                                <mo>+</mo>
+                                <mn>1</mn>
+                            </mrow>
+                        </mfrac>
+                    </mrow>
+                </math>
+                <math display="block">
+                    <mrow>
+                        <msub>
+                            <mi>r</mi>
+                            <mn>2</mn>
+                        </msub>
+                        <mo>=</mo>
+                        <mn>2</mn>
+                        <mi>f</mi>
+                        <mfrac>
+                            <mrow>
+                                <mi>n</mi>
+                                <mo>−</mo>
+                                <mn>1</mn>
+                            </mrow>
+                            <mrow>
+                                <mi>q</mi>
+                                <mo>−</mo>
+                                <mn>1</mn>
+                            </mrow>
+                        </mfrac>
+                    </mrow>
+                </math>
+            </section>
+            <div class="separator"></div>
+            <section class="input">
+                <h2>Entrada</h2>
+                <form>
+                    <div class="row">
+                        <math>
+                            <msub>
+                                <mi>n</mi>
+                                <mi>L</mi>
+                            </msub>
+                        </math>
+                        <input type="number" name="nl" value="1.5168" min="1" step="any">
+                    </div>
+
+                    <div class="row">
+                        <math>
+                            <mi>i</mi>
+                            <mtext>&nbsp;</mtext>
+                            <mo>(</mo>
+                            <mi>mm</mi>
+                            <mo>)</mo>
+                        </math>
+                        <div class="locked-var">
+                            <label>
+                                <input type="radio" name="variable" value="i">
+                                <span class="icon"></span>
+                            </label>
+                            <input type="number" name="i" value="100.00" step="any">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <math>
+                            <mi>o</mi>
+                            <mtext>&nbsp;</mtext>
+                            <mo>(</mo>
+                            <mi>mm</mi>
+                            <mo>)</mo>
+                        </math>
+                        <div class="locked-var">
+                            <label>
+                                <input type="radio" name="variable" value="o">
+                                <span class="icon"></span>
+                            </label>
+                            <input type="number" name="o" value="200.00" step="any">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <math>
+                            <mi>f</mi>
+                            <mtext>&nbsp;</mtext>
+                            <mo>(</mo>
+                            <mi>mm</mi>
+                            <mo>)</mo>
+                        </math>
+                        <div class="locked-var">
+                            <label>
+                                <input type="radio" name="variable" value="f" checked>
+                                <span class="icon"></span>
+                            </label>
+                            <input type="number" name="f" value="0.00" step="any">
+                        </div>
+                    </div>
+                </form>
+            </section>
+            <div class="separator"></div>
+            <section class="output">
+                <h2>Saída</h2>
+                <form>
+                    <div class="row">
+                        <math>
+                            <msub>
+                                <mi>R</mi>
+                                <mn>1</mn>
+                            </msub>
+                            <mtext>&nbsp;</mtext>
+                            <mo>(</mo>
+                            <mi>mm</mi>
+                            <mo>)</mo>
+                        </math>
+                        <input type="text" name="r1" readonly>
+                    </div>
+
+                    <div class="row">
+                        <math>
+                            <msub>
+                                <mi>R</mi>
+                                <mn>2</mn>
+                            </msub>
+                            <mtext>&nbsp;</mtext>
+                            <mo>(</mo>
+                            <mi>mm</mi>
+                            <mo>)</mo>
+                        </math>
+                        <input type="text" name="r2" readonly>
+                    </div>
+
+                    <div class="row">
+                        <math>
+                            <mi>p</mi>
+                        </math>
+                        <input type="text" name="p" readonly>
+                    </div>
+
+                    <div class="row">
+                        <math>
+                            <mi>q</mi>
+                        </math>
+                        <input type="text" name="c" readonly>
+                    </div>
+
+                    <div class="row">
+                        <a href="#" class="btn solid">Propriedades</a>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <hr>
+
+    <footer>
+    <div class="container body">
+        <section class="support">
+            <h4 class="header-title">Apoio</h4>
+
+            <div class="body">
+                <!--<picture>
+                    <source srcset="/images/partners/usp-dark.webp" media="(prefers-color-scheme: dark)">
+                    <source srcset="/images/partners/usp-light.webp" media="(prefers-color-scheme: light)">
+                </picture>-->
+                <img src="/images/partners/usp-light.webp" alt="USP">
+                <!--<picture>
+                    <source srcset="/images/partners/ifsc-dark.webp" media="(prefers-color-scheme: dark)">
+                    <source srcset="/images/partners/ifsc-light.webp" media="(prefers-color-scheme: light)">
+                </picture>-->
+                <img src="/images/partners/ifsc-light.webp" alt="IFSC">
+                <img src="/images/partners/cepof.webp" alt="CEPOF">
+                <img src="/images/partners/cnpq.webp" alt="CNPq">
+                <img src="/images/partners/capes.webp" alt="Capes">
+                <img src="/images/partners/fapesp.webp" alt="Fapesp">
+            </div>
+        </section>
+        <section class="contact">
+            <h4 class="header-title">Contato</h4>
+
+            <section>
+                <h5>Telefone</h5>
+
+                <ul>
+                    <li><a href="tel:+551600000000" class="link icon"><i class="icon phone"></i><span>(16) 0000-0000</span></a></li>
+                    <li><a href="tel:+551600000000" class="link icon"><i class="icon phone"></i><span>(16) 0000-0000</span></a></li>
+                </ul>
+            </section>
+        </section>
+    </div>
+</footer>
+<script type="module">
+    const header = document.querySelector("header");
+
+    document.addEventListener("scroll", (event) => {
+        header.classList.toggle("fixed", document.documentElement.scrollTop > 0);
+    });
+</script>
+
+<script src="/scripts/shape-factor.js" type="module"></script></body>
+
+</html>
