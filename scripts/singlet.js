@@ -30,18 +30,12 @@ function update() {
   const fixed = input.fixed.value;
   const r2emr1 = input.r2emr1.checked;
 
-  for (const field of input) {
-    if (field.type === "number") {
-      field.valueAsNumber += 0; // because browsers suck
-    }
-  }
-
   inputForm.classList.toggle("locked", r2emr1);
   input.fixed.forEach((radio) => {
     const input = radio.parentElement.nextElementSibling;
 
-    radio.checked = (radio.value == fixed);
-    input.disabled = ((input.name != fixed) == r2emr1);
+    radio.checked = radio.value == fixed;
+    input.disabled = (input.name != fixed) == r2emr1;
   });
 
   const no = input.no.valueAsNumber;
@@ -68,7 +62,15 @@ function update() {
       } else {
         r1 = -(r2 = getNumber(input.r2));
       }
-      phi = (dl * ni * nl - dl * nl * nl - dl * ni * no + dl * nl * no - ni * nl * r1 + 2 * nl * nl * r1 - nl * no * r1) / (nl * r1 * r1);
+      phi =
+        (dl * ni * nl -
+          dl * nl * nl -
+          dl * ni * no +
+          dl * nl * no -
+          ni * nl * r1 +
+          2 * nl * nl * r1 -
+          nl * no * r1) /
+        (nl * r1 * r1);
       input.f.valueAsNumber = 1 / phi;
     }
   } else {
@@ -77,34 +79,52 @@ function update() {
       r2 = getNumber(input.r2);
       phio = (nl - no) / r1;
       phii = (ni - nl) / r2;
-      phi = phii + phio - phii * phio * dl / nl;
+      phi = phii + phio - (phii * phio * dl) / nl;
       input.f.valueAsNumber = 1 / phi;
     } else if (fixed === "r1") {
       phi = 1 / getNumber(input.f);
       r2 = getNumber(input.r2);
-      r1 = ((nl - no) * (-(dl * ni) + dl * nl + nl * r2)) / (nl * (-ni + nl + phi * r2));
+      r1 =
+        ((nl - no) * (-(dl * ni) + dl * nl + nl * r2)) /
+        (nl * (-ni + nl + phi * r2));
       input.r1.valueAsNumber = r1;
     } else {
       phi = 1 / getNumber(input.f);
       r1 = getNumber(input.r1);
-      r2 = ((ni - nl) * (dl * nl - dl * no - nl * r1)) / (nl * (nl - no - phi * r1));
+      r2 =
+        ((ni - nl) * (dl * nl - dl * no - nl * r1)) /
+        (nl * (nl - no - phi * r1));
       input.r2.valueAsNumber = r2;
     }
   }
 
   phio = (nl - no) / r1;
   phii = (ni - nl) / r2;
-  phi = phio + phii - phio * phii * dl / nl;
+  phi = phio + phii - (phio * phii * dl) / nl;
   efl = 1 / phi;
   ff = -no * efl;
   fr = ni * efl;
   nps = ff + fr;
-  p1 = phii / phi * dl / nl * no;
-  p2 = -phio / phi * dl / nl * ni;
+  p1 = (((phii / phi) * dl) / nl) * no;
+  p2 = (((-phio / phi) * dl) / nl) * ni;
   bfl = fr + p2;
   ffl = ff + p1;
 
-  for (const [name, value] of Object.entries({ phi, phio, phii, r1, r2, efl, bfl, ffl, nps, p1, p2, fr, ff })) {
+  for (const [name, value] of Object.entries({
+    phi,
+    phio,
+    phii,
+    r1,
+    r2,
+    efl,
+    bfl,
+    ffl,
+    nps,
+    p1,
+    p2,
+    fr,
+    ff,
+  })) {
     output[name].value = nf.format(value);
   }
 
@@ -124,10 +144,16 @@ function loadFromData(data) {
 }
 
 try {
+  for (const field of input) {
+    if (field.type === "number") {
+      field.valueAsNumber += 0; // because browsers suck
+    }
+  }
+
   if (window.location.search.startsWith("?")) {
     loadFromData(window.location.search.substring(1));
   }
 } finally {
-  document.querySelector(".input form").addEventListener("input", update)
+  document.querySelector(".input form").addEventListener("input", update);
   update();
 }

@@ -1,6 +1,8 @@
 const inputForm = document.querySelector(".input form");
 const input = inputForm.elements;
-const output = [...document.querySelectorAll(".output form")].map((form) => form.elements);
+const output = [...document.querySelectorAll(".output form")].map(
+  (form) => form.elements,
+);
 const outputLink = [...document.querySelectorAll(".output form a")];
 const outputURL = new URL("./singleto.php", window.location);
 const nf = new Intl.NumberFormat("pt-BR");
@@ -20,16 +22,10 @@ function update() {
   const fixed = input.fixed.value;
   const r2emr1 = input.r2emr1.checked;
 
-  for (const field of input) {
-    if (field.type === "number") {
-      field.valueAsNumber += 0; // because browsers suck
-    }
-  }
-
   inputForm.classList.toggle("locked", r2emr1);
   input.fixed.forEach((radio) => {
     const input = radio.parentElement.nextElementSibling;
-    input.disabled = input.name != fixed == r2emr1;
+    input.disabled = (input.name != fixed) == r2emr1;
   });
 
   const no = input.no.valueAsNumber;
@@ -43,52 +39,109 @@ function update() {
   const v1 = input.v1.valueAsNumber;
   const v2 = input.v2.valueAsNumber;
 
-  const phi = 1 / getNumber(input.f);
-  const phi1 = phi * v1 / (v1 - v2);
-  const phi2 = phi * v2 / (v2 - v1);
+  let phi = 1 / getNumber(input.f);
+  let phi1 = (phi * v1) / (v1 - v2);
+  let phi2 = (phi * v2) / (v2 - v1);
 
   let r1, r2, r3;
 
-  if (fixed === "r1") {
-    r1 = getNumber(input.r1);
-    r2 = (1 - n1) * (1 - (n1 - no) * d1 / n1 / r1) / (phi1 - (n1 - no) / r1);
-    r3 = (ni - n2) * (1 - (n2 - 1) * d2 / n2 / r2) / (phi2 - (n2 - 1) / r2);
-  } else if (fixed === "r2") {
-    r2 = getNumber(input.r2);
-    r1 = (n1 - no) * (1 - (1 - n1) * d1 / n1 / r2) / (phi1 - (1 - n1) / r2);
-    r3 = (ni - n2) * (1 - (n2 - 1) * d2 / n2 / r2) / (phi2 - (n2 - 1) / r2);
-  } else if (fixed === "r3") {
-    r3 = getNumber(input.r3);
-    r2 = (n2 - 1) * (1 - (ni - n2) * d2 / n2 / r3) / (phi2 - (ni - n2) / r3);
-    r1 = (n1 - no) * (1 - (1 - n1) * d1 / n1 / r2) / (phi1 - (1 - n1) / r2);
-  } else { // f
-    r1 = (-n1 + 2 * n1 * n1 - n1 * no + Math.sqrt((n1 - 2 * n1 * n1 + n1 * no) ** 2 - 4 * n1 * d1 * phi1 * (-n1 + n1 * n1 + no - n1 * no))) / (2 * n1 * phi1);
-    r2 = -r1;
-    r3 = (ni - n2) * (1 - (n2 - 1) * d2 / n2 / r2) / (phi2 - (n2 - 1) / r2);
+  if (r2emr1) {
+    if (fixed === "r1") {
+      r1 = getNumber(input.r1);
+      r2 =
+        ((1 - n1) * (1 - ((n1 - no) * d1) / n1 / r1)) / (phi1 - (n1 - no) / r1);
+      r3 =
+        ((ni - n2) * (1 - ((n2 - 1) * d2) / n2 / r2)) / (phi2 - (n2 - 1) / r2);
+    } else if (fixed === "r2") {
+      r2 = getNumber(input.r2);
+      r1 =
+        ((n1 - no) * (1 - ((1 - n1) * d1) / n1 / r2)) / (phi1 - (1 - n1) / r2);
+      r3 =
+        ((ni - n2) * (1 - ((n2 - 1) * d2) / n2 / r2)) / (phi2 - (n2 - 1) / r2);
+    } else if (fixed === "r3") {
+      r3 = getNumber(input.r3);
+      r2 =
+        ((n2 - 1) * (1 - ((ni - n2) * d2) / n2 / r3)) / (phi2 - (ni - n2) / r3);
+      r1 =
+        ((n1 - no) * (1 - ((1 - n1) * d1) / n1 / r2)) / (phi1 - (1 - n1) / r2);
+    } else {
+      // f
+      r1 =
+        (-n1 +
+          2 * n1 * n1 -
+          n1 * no +
+          Math.sqrt(
+            (n1 - 2 * n1 * n1 + n1 * no) ** 2 -
+              4 * n1 * d1 * phi1 * (-n1 + n1 * n1 + no - n1 * no),
+          )) /
+        (2 * n1 * phi1);
+      r2 = -r1;
+      r3 =
+        ((ni - n2) * (1 - ((n2 - 1) * d2) / n2 / r2)) / (phi2 - (n2 - 1) / r2);
+    }
+  } else {
+    if (fixed === "r1") {
+      r2 = getNumber(input.r2);
+      r1 =
+        ((n1 - no) * (1 - ((1 - n1) * d1) / n1 / r2)) / (phi1 - (1 - n1) / r2);
+    } else if (fixed === "r2") {
+      r3 = getNumber(input.r3);
+      r2 =
+        ((n2 - 1) * (1 - ((ni - n2) * d2) / n2 / r3)) / (phi2 - (ni - n2) / r3);
+    } else if (fixed === "r3") {
+      r2 = getNumber(input.r2);
+      r3 =
+        ((ni - n2) * (1 - ((n2 - 1) * d2) / n2 / r2)) / (phi2 - (n2 - 1) / r2);
+    } else {
+      // lens 1
+      {
+        const phio = (n1 - no) / r1;
+        const phii = (ni - n1) / r2;
+        phi1 = phii + phio - (phii * phio * d1) / n1;
+      }
+      // lens 2
+      {
+        const phio = (n2 - no) / r2;
+        const phii = (ni - n2) / r3;
+        phi2 = phii + phio - (phii * phio * d2) / n2;
+      }
+
+      phi = phi1 + phi2;
+      console.log(phi1, phi2, phi);
+    }
   }
 
-  if (fixed !== "r1") {
+  if ((fixed !== "r1") === r2emr1) {
     input.r1.valueAsNumber = r1;
   }
 
-  if (fixed !== "r2") {
+  if ((fixed !== "r2") === r2emr1) {
     input.r2.valueAsNumber = r2;
   }
 
-  if (fixed !== "r3") {
+  if ((fixed !== "r3") === r2emr1) {
     input.r3.valueAsNumber = r3;
   }
 
-  if (fixed !== "f") {
-    input.f.valueAsNumber = f;
+  if ((fixed !== "f") === r2emr1) {
+    input.f.valueAsNumber = 1 / phi;
   }
 
-
-  for (const [name, value] of Object.entries({ phi1, r1, r2, efl1: 1 / phi1 })) {
+  for (const [name, value] of Object.entries({
+    phi1,
+    r1,
+    r2,
+    efl1: 1 / phi1,
+  })) {
     output[0][name].value = nf.format(value);
   }
 
-  for (const [name, value] of Object.entries({ phi2, r2, r3, efl2: 1 / phi2 })) {
+  for (const [name, value] of Object.entries({
+    phi2,
+    r2,
+    r3,
+    efl2: 1 / phi2,
+  })) {
     output[1][name].value = nf.format(value);
   }
 
@@ -103,7 +156,20 @@ function loadFromData(data) {
   const values = JSON.parse(atob(data));
 
   console.table(values);
-  for (const key of ["no", "ni", "n1", "n2", "d1", "d2", "v1", "v2", "r1", "r2", "r3", "f"]) {
+  for (const key of [
+    "no",
+    "ni",
+    "n1",
+    "n2",
+    "d1",
+    "d2",
+    "v1",
+    "v2",
+    "r1",
+    "r2",
+    "r3",
+    "f",
+  ]) {
     input[key].valueAsNumber = values[key] ?? NaN;
   }
 
@@ -114,10 +180,16 @@ function loadFromData(data) {
 }
 
 try {
+  for (const field of input) {
+    if (field.type === "number") {
+      field.valueAsNumber += 0; // because browsers suck
+    }
+  }
+
   if (window.location.search.startsWith("?")) {
     loadFromData(window.location.search.substring(1));
   }
 } finally {
-  document.querySelector(".input form").addEventListener("input", update)
+  document.querySelector(".input form").addEventListener("input", update);
   update();
 }

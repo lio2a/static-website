@@ -20,12 +20,6 @@ function update() {
   const nl = input.nl.valueAsNumber;
   const variable = input.variable.value;
 
-  for (const field of input) {
-    if (field.type === "number") {
-      field.valueAsNumber += 0; // because browsers suck
-    }
-  }
-
   input.variable.forEach((radio) => {
     const field = radio.parentElement.nextElementSibling;
     field.disabled = field.name == variable;
@@ -51,7 +45,7 @@ function update() {
   }
 
   if (!isFinite(i) && !isFinite(o)) {
-    p = (i === o) ? i : 0;
+    p = i === o ? i : 0;
   } else if (!isFinite(i)) {
     p = 1;
   } else if (!isFinite(o)) {
@@ -60,9 +54,9 @@ function update() {
     p = (i + o) / (i - o);
   }
 
-  const c = -2 * p * (nl * nl - 1) / (nl + 2);
-  const r1 = 2 * f * (nl - 1) / (c + 1);
-  const r2 = 2 * f * (nl - 1) / (c - 1);
+  const c = (-2 * p * (nl * nl - 1)) / (nl + 2);
+  const r1 = (2 * f * (nl - 1)) / (c + 1);
+  const r2 = (2 * f * (nl - 1)) / (c - 1);
 
   for (const [name, value] of Object.entries({ p, c, r1, r2 })) {
     output[name].value = nf.format(value);
@@ -72,6 +66,12 @@ function update() {
   outputLink.href = outputURL;
 }
 
-document.querySelector(".input form").addEventListener("input", update)
-update();
+document.querySelector(".input form").addEventListener("input", update);
 
+for (const field of input) {
+  if (field.type === "number") {
+    field.valueAsNumber += 0; // because browsers suck
+  }
+}
+
+update();
